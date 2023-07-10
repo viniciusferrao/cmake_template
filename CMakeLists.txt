@@ -14,6 +14,29 @@ endif()
 # when compiling with PCH enabled
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Enable Conan 2.0 support
+option(myproject_ENABLE_CONAN "Use Conan 2 to manage dependencies" ON)
+if(myproject_ENABLE_CONAN)
+  set(CMAKE_PROJECT_TOP_LEVEL_INCLUDES cmake/conan_provider.cmake)
+endif()
+
+# Set a default build type if none was specified
+# This is required to be before project() for Conan 2.0 to work properly
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
+  set(CMAKE_BUILD_TYPE
+          RelWithDebInfo
+          CACHE STRING "Choose the type of build." FORCE)
+  # Set the possible values of build type for cmake-gui, ccmake
+  set_property(
+          CACHE CMAKE_BUILD_TYPE
+          PROPERTY STRINGS
+          "Debug"
+          "Release"
+          "MinSizeRel"
+          "RelWithDebInfo")
+endif()
+
 # Set the project name and language
 project(
   myproject

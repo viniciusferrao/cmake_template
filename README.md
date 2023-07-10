@@ -6,6 +6,9 @@
 
 ## About cmake_template
 
+This project has been forked from [cmake_template](https://github.com/cpp-best-practices/cmake_template) to add 
+support for Conan 2.0 without breaking the compatibility with [CPM](https://github.com/cpm-cmake/CPM.cmake).
+
 This is a C++ Best Practices GitHub template for getting up and running with C++ quickly.
 
 By default (collectively known as `ENABLE_DEVELOPER_MODE`)
